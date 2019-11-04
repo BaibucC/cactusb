@@ -5,6 +5,7 @@ import java.util.List;
 
 import bcactus.entity.Country;
 import bcactus.service.CountryService;
+import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,18 +17,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class CountryController {
+public class CactusController {
 	
-	@Autowired
-	CountryService countryService;
-        
-        @RequestMapping(value = "/")
-    public ModelAndView listCactus(ModelAndView model){
+    @Autowired
+    CountryService countryService;
+
+    @RequestMapping(value = "/bcactus/", method = RequestMethod.GET)
+    public ModelAndView listCactus(Model model){
         String omg = "omg, it's working!";
 //        String result = userDAO.getResult();
 //        model.addObject("allCactusList", result);
-        model.setViewName("home");
-        return model;
+//        model.setViewName("home");
+System.out.println("   sdfosdmfs");
+          model.addAttribute("omg", omg);
+        return new ModelAndView("/views/home.html");
     }
 	
 //	@RequestMapping(value = "/getAllCountries", method = RequestMethod.GET, headers = "Accept=application/json")
